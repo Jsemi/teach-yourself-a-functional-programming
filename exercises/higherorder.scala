@@ -1,33 +1,31 @@
 object HigherOrderFunctions {
 
     // returns a function that increments a given argument with a predefined amount
-    def plus(x:Int):(Int => Int) = (y:Int) => ???
+    def plus(x:Int):(Int => Int) = (y:Int) => x + y
 
     // returns a function that subtracts a given argument with a predefined amount
-    def minus(x:Int):(Int => Int) = ???
+    def minus(x:Int):(Int => Int) = (y:Int) => y - x
 
     // calls 'action' function with the given x argument and returns the result
-    def doIt(x:Int, action: (Int => Int)):Int = ???
+    def doIt(x:Int, action: (Int => Int)):Int = action(x)
 
     /** combines two functions that both take integer arguments by passing the result from
       * the first function as the argument to the second function, and returns its return value
       */
-    def combineInt(first: (Int => Int), second: (Int => Int)):(Int => Int) = ???
+    def combineInt(first: (Int => Int), second: (Int => Int)):(Int => Int) = (x:Int) => first(second(x))
 
     // combines two functions of generic types
-    def combine[A, B, C](first: (A => B), second: (B => C)):(A => C) = ???
+    def combine[A, B, C](first: (A => B), second: (B => C)):(A => C) = (x:A) => second(first(x))
 
     /** converts a two-argument integer-taking function to a single-argument function
       * where the argument is fixed with given 'param'
       */
-    def curry2int(fn: (Int, Int) => Int, param: Int): (Int => Int) = ???
+    def curry2int(fn: (Int, Int) => Int, param: Int): (Int => Int) = (x:Int) => fn(param, x)
 
-    /** 'curries' a two-argument generic function - i.e. translates the evaluation of a function 
+    /** 'curries' a two-argument generic function - i.e. translates the evaluation of a function
       * that takes two arguments into evaluating a sequence of functions, each with a single argument
       */
-    def curry2[A, B, C](fn: (A, B) => C): (A => (B => C)) = ???
-
-
+    def curry2[A, B, C](fn: (A, B) => C): (A => (B => C)) = (x:A) => (y:B) => fn(x, y)
 
 
 
