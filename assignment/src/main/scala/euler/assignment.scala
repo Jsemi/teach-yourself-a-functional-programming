@@ -12,7 +12,20 @@ object ProjectEuler {
    * By considering the terms in the Fibonacci sequence whose values do not
    * exceed four million, find the sum of the even-valued terms.
    */
-  def problem2(): Int = ???
+ def problem2(): Int = {
+   
+    def isEven(x:Int):Boolean = x % 2 == 0
+   
+    def sumEvenFib(a:Int, b:Int, sum:Int, limit:Int):Int = {
+      if(b > limit) {
+        sum
+      } else if(isEven(b)){
+        sumEvenFib(b, a+b, sum+b, limit)
+      } else
+        sumEvenFib(b, a+b, sum, limit)
+   }
+  sumEvenFib(0, 1, 0, 4000000)
+  }
 
   /*
    * Largest palindrome product
