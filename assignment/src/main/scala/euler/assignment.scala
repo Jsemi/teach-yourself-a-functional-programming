@@ -12,7 +12,7 @@ object ProjectEuler {
    * By considering the terms in the Fibonacci sequence whose values do not
    * exceed four million, find the sum of the even-valued terms.
    */
- def problem2(): Int = {
+  def problem2(): Int = {
    
     def isEven(x:Int):Boolean = x % 2 == 0
    
@@ -23,7 +23,7 @@ object ProjectEuler {
         sumEvenFib(b, a+b, sum+b, limit)
       } else
         sumEvenFib(b, a+b, sum, limit)
-   }
+    }
   sumEvenFib(0, 1, 0, 4000000)
   }
 
@@ -36,7 +36,18 @@ object ProjectEuler {
    * Find the largest palindrome made from the product of two 3-digit numbers.
    *
    */
-  def problem4(): Int = ???
+  def problem4(): Int = {
+    def isPalindrome(x:Int):Boolean = {
+      val numString = x.toString
+      numString == numString.reverse
+    }
+    
+    def mkList(x:Int, y:Int):List[Int] = {
+      Range(x, y).toList
+    }
+
+    mkList(100, 999).flatMap(x => mkList(100, 999).map(y => x * y)).filter(isPalindrome).max
+  }
 
   /*
    * Special Pythagorean triplet
